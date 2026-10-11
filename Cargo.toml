@@ -1,0 +1,30 @@
+[package]
+name = "hwcast-gcb200"
+version = "0.1.0"
+edition = "2021"
+description = "hwcast mod: drives the Ant Esports GCB200 segment display with live hwcast data"
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+serde_json = "1"
+serialport = { version = "4", default-features = false }
+windows-service = "0.7"
+windows-sys = { version = "0.59", features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_System_Registry",
+  "Win32_System_Threading",
+  "Win32_UI_Shell",
+  "Win32_UI_WindowsAndMessaging",
+] }
+
+[build-dependencies]
+winresource = "0.1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
